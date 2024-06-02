@@ -6,25 +6,41 @@ public class LinkedList {
     public LinkedList(String name) {
         this.name = name;
     }
-    public void add(Node node) {
-        if (this.LastNode == null) {
-            this.LastNode = node;
-            this.firstNode = node;
+    public Node getFirstNode() {
+        return firstNode;
+        
+    }
+    public void setFirstNode(Node firstNode) {
+        this.firstNode = firstNode;
+        
+    }
+    public Node getLastNode() {
+        return LastNode;
+        
+    }
+    public void setLastNode(Node lastNode) {
+        LastNode = lastNode;
+        
+    }
+    public void add(Node node) throws InterruptedException {
+        if (this.getLastNode() == null) {
+            this.setLastNode(node);
+            this.setFirstNode(node);
         }
         else{
-            this.LastNode.setNext(node);
-            this.LastNode=node;
+            this.getLastNode().setNext(node);
+            this.setLastNode(node);
             ;
         }
     }
     public void printList(Node node) {
         node.printNode();
-        if (node==LastNode){
+        if (node==getLastNode()){
             return;
         }
         printList(node.getNext());
     }
     public void printList() {
-        printList(this.firstNode);
+        printList(this.getFirstNode());
     }
 }
